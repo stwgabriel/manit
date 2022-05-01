@@ -9,7 +9,7 @@ function MetaTitle({ page }: MetaTitleProps): JSX.Element | null {
 
   return (
     <Head>
-      <title>{page} - website name</title>
+      <title>{`${page} - website name`}</title>
     </Head>
   );
 }
