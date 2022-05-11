@@ -6,14 +6,13 @@
   },
   "extends": [
     "airbnb",
+    "airbnb-typescript",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "prettier/airbnb",
-    "prettier/react"
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "project": "./tsconfig.json",
     "ecmaFeatures": {
       "jsx": true
     },
@@ -22,17 +21,14 @@
   },
   "plugins": [
     "react",
-    "@typescript-eslint",
-    "prettier"
+    "@typescript-eslint"
   ],
   "rules": {
     // no sense rules
     "react/jsx-filename-extension": "off",
-    "react/padded-blocks": "off",
+    "padded-blocks": "off",
     "react/prop-types": "off",
     "import/prefer-default-export": "off",
-    "react/react-in-jsx-scope": "off",
-    // settings
-    "prettier/prettier": "error"
+    "react/react-in-jsx-scope": "off"
   }
 }
