@@ -5,23 +5,21 @@ import Document, {
   Head,
   Main,
   NextScript,
-} from "next/document";
+} from 'next/document';
 
-import { ServerStyleSheet } from "styled-components";
+import { ServerStyleSheet } from 'styled-components';
 
 class MyDocument extends Document {
   static async getInitialProps(
-    context: DocumentContext
+    context: DocumentContext,
   ): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = context.renderPage;
 
     try {
-      context.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
-        });
+      context.renderPage = () => originalRenderPage({
+        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+      });
 
       const initialProps = await Document.getInitialProps(context);
 
@@ -89,7 +87,7 @@ class MyDocument extends Document {
           <link rel="icon" sizes="32x32" href="favicon.ico" />
           <link rel="apple-touch-icon" sizes="32x32" href="favicon.ico" />
           <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-          <link rel="apple-touch-icon" href="favicon.webp"></link>
+          <link rel="apple-touch-icon" href="favicon.webp" />
 
           {/* Icons */}
           <link
@@ -120,7 +118,7 @@ class MyDocument extends Document {
           {/* <!-- Open Graph / Meta --> */}
           <meta property="og:type" content="website" />
           <meta property="og:title" content="" />
-          <meta property="og:site_name" content=""></meta>
+          <meta property="og:site_name" content="" />
           <meta property="og:url" content="" />
           <meta property="og:description" content="" />
           <meta property="og:image" content="images/card-image.png" />
