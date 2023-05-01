@@ -1,1 +1,1 @@
-# My Next Template
+# Next base template

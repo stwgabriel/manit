@@ -10,7 +10,7 @@ function MetaTitle({ page }: MetaTitleProps): ReactElement | null {
 
   return (
     <Head>
-      <title>{`${page} - Gabriel's personal website`}</title>
+      <title>{`${page} - [NAME]`}</title>
     </Head>
   );
 }
