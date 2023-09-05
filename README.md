@@ -1,1 +1,1 @@
-# Next base template
+# Manit front end

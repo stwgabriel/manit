@@ -1,5 +1,8 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-const HomeContainer = styled.div``;
+const HomeContainer = styled.section`
+  height: 100%;
+  width: 100%;
+`
 
-export default HomeContainer;
+export default HomeContainer

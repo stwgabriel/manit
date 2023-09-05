@@ -7,6 +7,7 @@ import { defaultTheme } from 'src/styles/theme'
 
 // Reducer
 import store from '../store/reducers'
+import AuthProvider from './authProvider'
 
 type RootProviderProps = {
   children: ReactNode
@@ -20,9 +21,11 @@ function RootProvider({
 
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        {children}
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          {children}
+        </ThemeProvider>
+      </AuthProvider>
     </Provider>
   )
 }

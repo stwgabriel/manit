@@ -28,6 +28,7 @@
     "no-return-assign": "off",
     "no-param-reassign": "off",
     // no sense rules
+    "no-console": "off",
     "react/jsx-filename-extension": "off",
     "padded-blocks": "off",
     "react/prop-types": "off",

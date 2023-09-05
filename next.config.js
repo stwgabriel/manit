@@ -4,7 +4,7 @@ const nextConfig = {
   compiler: {
     styledComponents: {
       ssr: true,
-      // minify: true, // not supported at this point - 04/2023
+      minify: true, // not supported at this point - 04/2023
     },
   },
   swcMinify: true,
@@ -14,11 +14,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // {
-      //   source: '/',
-      //   destination: '/404',
-      //   permanent: true,
-      // },
+      {
+        source: '/app',
+        destination: '/auth/signin',
+        permanent: true,
+      },
     ]
   },
 }

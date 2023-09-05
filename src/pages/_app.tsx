@@ -5,9 +5,10 @@ import { Analytics } from '@vercel/analytics/react'
 import GlobalStyles from 'src/styles/global'
 import RootProvider from 'src/providers'
 
-import { Inter } from 'next/font/google'
+import { DM_Sans, Montserrat } from 'next/font/google'
 
-const localInterFont = Inter({ subsets: ['latin'] })
+const DMSans = DM_Sans({ subsets: ['latin'], weight: ['400', '500'] })
+const montSerratFont = Montserrat({ subsets: ['latin'] })
 
 function MyApp({ Component, pageProps }) {
 
@@ -139,7 +140,10 @@ function MyApp({ Component, pageProps }) {
         <style>
           {`
             * {
-              font-family: ${localInterFont.style.fontFamily};
+              font-family: ${DMSans.style.fontFamily};
+            }
+            .logo {
+              font-family: ${montSerratFont.style.fontFamily};
             }
           `}
         </style>
