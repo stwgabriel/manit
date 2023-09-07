@@ -1,12 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components'
 
-const ButtonStyles = styled.div`
+type ButtonStylesProps = {
+  variant: string
+}
 
-  button, a {
-    background: ${({ theme }) => theme.colors.primary.main};
+const ButtonStyles = styled.div<ButtonStylesProps>`
+  button,
+  a {
+    background: ${({ theme }) => theme.colors.primary.light};
     border-radius: 1rem;
     border: none;
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.black};
 
     display: flex;
     align-items: center;
@@ -14,6 +18,15 @@ const ButtonStyles = styled.div`
     gap: 1rem;
 
     padding: 1rem 2rem;
+
+    ${({ variant, theme }) => (
+    variant === 'dangerous'
+      ? css`
+          background: ${theme.colors.danger};
+        `
+      : null
+  )};
+
   }
 `
 

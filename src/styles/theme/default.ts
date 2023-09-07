@@ -4,6 +4,7 @@ const defaultTheme = {
     background: '#fff',
     white: '#fefefe',
     black: '#222',
+    danger: '#E05454',
     primary: {
       light: '#CCADEB',
       main: '#a06ad7',

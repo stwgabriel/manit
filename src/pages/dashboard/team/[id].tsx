@@ -5,17 +5,16 @@ import { useEffect, useState } from 'react'
 import { Team as TeamModel } from 'src/models/user'
 
 // Components
-import Header from 'src/components/global/layout/Header'
-import Button from 'src/components/global/standard/Button'
-import TeamHeader from 'src/components/global/custom/TeamHeader'
-import ProcessCard from 'src/components/global/custom/ProcessCard'
-import ProcessesList from 'src/components/global/custom/ProcessesList'
+import { Header } from 'src/components/global/layout'
+import { Button } from 'src/components/global/standard'
 import ContentContainer from 'src/components/global/layout/ContentContainer'
+import { ProcessCard, TeamHeader, ProcessesList } from 'src/components/global/custom'
 
 // Styles
 import DashboardContainer from 'src/styles/pages/dashboard'
 
 function Team() {
+  const token = localStorage.getItem('m-token')
 
   const { query } = useRouter()
 
@@ -26,12 +25,16 @@ function Team() {
 
     (async () => {
       const teamData = await (
-        await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/teams/${query.id}`)
-      ).json()
+        await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/teams/${query.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      ).json() as TeamModel
 
       setTeam(teamData)
     })()
-  }, [query])
+  }, [query, token])
 
   return (
     <DashboardContainer>
@@ -56,15 +59,20 @@ function Team() {
 
         <TeamHeader
           name={team.name}
+          teamId={team.id}
           members={team.users}
         />
 
         <ProcessesList>
-          {team.processes?.length > 0 ? team.processes.map(({ id, name, stage }) => (
+          {team.processes?.length > 0 ? team.processes.map(({
+            id, name, stage, subProcesses,
+          }) => (
             <ProcessCard
               key={id}
               name={name}
+              teamId={team.id}
               stage={stage}
+              subProcesses={subProcesses}
             />
           )) : 'Nenhum processo criado'}
         </ProcessesList>

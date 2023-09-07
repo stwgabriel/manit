@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Dashboard = styled.section`
+const Dashboard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -34,7 +34,7 @@ const GrettingsContainer = styled.div`
   }
 `
 
-const SectionsWrapper = styled.div`
+const SectionWrapper = styled.div`
 
   display: flex;
   flex: 1;
@@ -57,4 +57,4 @@ const SectionContainer = styled.div`
 `
 
 export default Dashboard
-export { GrettingsContainer, SectionsWrapper, SectionContainer }
+export { GrettingsContainer, SectionWrapper, SectionContainer }

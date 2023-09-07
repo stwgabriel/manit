@@ -16,21 +16,10 @@ const HeaderContainer = styled.header`
   margin: 0 auto ;
 `
 
-const LogoStyles = styled.h1`
-  color: ${({ theme }) => theme.colors.white};
-  display: inline;
-  font-family: 'montserrat', sans-serif;
-  font-size: 3.2rem;
-  font-weight: 700;
-
-  span {
-    color: ${({ theme }) => theme.colors.secondary.main};
-  }
-`
-
-const ProfilePicture = styled.div`
-  border-radius: 1rem;
+const ProfilePicture = styled.button`
   background: #471877;
+  border: none;
+  border-radius: 1rem;
   box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.10);
 
   display: flex;
@@ -42,4 +31,4 @@ const ProfilePicture = styled.div`
 `
 
 export default HeaderContainer
-export { LogoStyles, ProfilePicture }
+export { ProfilePicture }

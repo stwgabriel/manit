@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  # Cria banco de dados PostgreSQL
+  db:
+    image: postgres
+    container_name: stagecase-db
+    networks:
+      - mynetwork
+    environment:
+      POSTGRES_DB: stagecase-db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+
+  # Cria aplicação Nest.js
+  app:
+    build:
+      context: ../back
+      dockerfile: Dockerfile
+    container_name: stagecase-api
+    networks:
+      - mynetwork
+    depends_on:
+      - db
+    ports:
+      - "3010:3010"
+    command: yarn migrate
+
+  # Cria front-end Next.js
+  front:
+    build:
+      context: .
+    container_name: stagecase-fe
+    networks:
+      - mynetwork
+    depends_on:
+      - app
+    ports:
+      - "3000:3000"
+
+networks:
+  mynetwork:
+    driver: bridge

@@ -20,13 +20,13 @@ function RootProvider({
   const theme = defaultTheme
 
   return (
-    <Provider store={store}>
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <AuthProvider>
           {children}
-        </ThemeProvider>
-      </AuthProvider>
-    </Provider>
+        </AuthProvider>
+      </Provider>
+    </ThemeProvider>
   )
 }
 

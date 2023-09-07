@@ -3,14 +3,17 @@ import styled from 'styled-components'
 type StageButtonProps = {
   stageColor: string
 }
+type ProcessCardContainerProps = {
+  transparent: boolean
+}
 
-const ProcessCardContainer = styled.section`
+const ProcessCardContainer = styled.div<ProcessCardContainerProps>`
   display: flex;
   flex-direction: column;
   width: 100%;
 
   & > button, & .sub-process {
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ transparent, theme }) => (transparent ? 'transparent' : theme.colors.white)};
     border: none;
     border-radius: 5px;
 
@@ -87,8 +90,7 @@ const SubProcessesContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  align-self: stretch;
-
+  width: 100%;
   padding: 1rem;
 
   .sub-processes-wrapper {

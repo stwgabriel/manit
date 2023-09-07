@@ -8,8 +8,11 @@ import Input from 'src/components/global/standard/Input'
 // Styles
 import AuthPageContainer, { AuthForm } from 'src/styles/pages/auth'
 import { setUser } from 'src/store/slices/userSlice'
+import { useRouter } from 'next/router'
 
 function Signup() {
+
+  const route = useRouter()
 
   const [authForm, setAuthForm] = useState({
     name: '',
@@ -31,16 +34,19 @@ function Signup() {
     if (!authForm.name || !authForm.email || !authForm.password) return
 
     try {
-      const user = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/signup`, {
-        method: 'POST',
-        body: JSON.stringify(authForm),
-        headers: {
-          'content-type': 'application/json',
-        },
-      })
+      const user = await (
+        await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/signup`, {
+          method: 'POST',
+          body: JSON.stringify(authForm),
+          headers: {
+            'content-type': 'application/json',
+          },
+        })
+      ).json()
 
       setUser(user)
-
+      localStorage.setItem('m-token', user.accessToken)
+      route.push('/dashboard')
     } catch (error) {
       console.error(error)
     }

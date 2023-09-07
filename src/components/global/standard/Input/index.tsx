@@ -6,6 +6,7 @@ type InputProps = {
   name: string
   value: string | number
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
+  disabled?: boolean
 }
 
 function Input({
@@ -13,7 +14,7 @@ function Input({
   name,
   value,
   onChange,
-  ...props
+  disabled,
 }: InputProps) {
   return (
     <InputContainer>
@@ -24,7 +25,7 @@ function Input({
         value={value}
         name={name}
         onChange={onChange}
-        {...props}
+        disabled={disabled}
       />
     </InputContainer>
   )

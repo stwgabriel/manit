@@ -142,7 +142,7 @@ function MyApp({ Component, pageProps }) {
             * {
               font-family: ${DMSans.style.fontFamily};
             }
-            .logo {
+            #logo {
               font-family: ${montSerratFont.style.fontFamily};
             }
           `}
@@ -151,7 +151,7 @@ function MyApp({ Component, pageProps }) {
 
       <GlobalStyles />
       <Component {...pageProps} />
-      <div id="outer-view" />
+      <div id="modal-root" />
       <Analytics />
     </RootProvider>
   )

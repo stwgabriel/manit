@@ -17,6 +17,12 @@ const InputContainer = styled.div`
     font-display: 1.6rem;
 
     padding: 1rem;
+
+    &:disabled {
+      background: #0003;
+      border: none;
+      cursor: not-allowed;
+    }
   }
 `
 

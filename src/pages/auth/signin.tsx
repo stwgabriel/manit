@@ -10,8 +10,11 @@ import Input from 'src/components/global/standard/Input'
 
 // Styles
 import AuthPageContainer, { AuthForm } from 'src/styles/pages/auth'
+import { useRouter } from 'next/router'
 
 function Signin() {
+
+  const route = useRouter()
 
   const [authForm, setAuthForm] = useState({
     email: '',
@@ -43,11 +46,13 @@ function Signin() {
       ).json()
 
       setUser(user)
-      localStorage.setItem('token', user.accessToken)
+      localStorage.setItem('m-token', user.accessToken)
+      route.push('/dashboard')
     } catch (error) {
       console.error(error)
     }
   }
+
   return (
     <AuthPageContainer>
 

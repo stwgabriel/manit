@@ -10,7 +10,6 @@ const GlobalStyles = createGlobalStyle`
   }
 
   :root {
-
     font-family: sans-serif;
     font-size: 62.5%;
     height: 100%;
@@ -27,11 +26,11 @@ const GlobalStyles = createGlobalStyle`
    height: 100%;
     width: 100%;
   }
+  
   #__next{
     height: 100%;
     width: 100%;
   }
-
 
   li {
     list-style: none;

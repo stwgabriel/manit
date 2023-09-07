@@ -1,12 +1,26 @@
+import Link from 'next/link';
+
+// Components
+import { LogoStyles } from 'src/components/global/layout';
 import MetaTitle from '../components/MetaTitle';
 
+// Styles
+import AuthPageContainer from '../styles/pages/auth';
 import HomeContainer from '../styles/pages/home';
 
-function Home(): JSX.Element {
+function Home() {
   return (
     <HomeContainer>
       <MetaTitle page="Home" />
-      <h1>Home</h1>
+      <AuthPageContainer>
+        <LogoStyles>
+          man
+          <span>it</span>
+        </LogoStyles>
+        <Link href="/auth/signin">
+          Signin
+        </Link>
+      </AuthPageContainer>
     </HomeContainer>
   );
 }

@@ -5,12 +5,15 @@ const ProcessSectionContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+   width: 100%;
 
-  a {
+  &>div {
     color: ${({ theme }) => theme.colors.black};
      display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    width: 100%;
   }
 
 `

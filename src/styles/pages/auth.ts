@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const AuthPageContainer = styled.section`
+const AuthPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

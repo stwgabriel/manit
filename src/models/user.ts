@@ -41,6 +41,7 @@ type Stage = {
   id: string
   name: string
   color: string
+  processes: Process[]
   createdAt: string
   updatedAt: string
   processId: string

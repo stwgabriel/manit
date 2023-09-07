@@ -1,73 +1,85 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 // Store
 import { setUser } from 'src/store/slices/userSlice'
 import { useAppDispatch, useAppSelector } from 'src/store/reducers'
 
 // Components
-import TeamHeader from 'src/components/global/custom/TeamHeader'
-import ProcessCard from 'src/components/global/custom/ProcessCard'
-import ProcessesList from 'src/components/global/custom/ProcessesList'
+import {
+  ProcessCard,
+  TeamHeader,
+  ProcessesList,
+} from 'src/components/global/custom'
 
 // Styles
-import Link from 'next/link'
 import ProcessSectionContainer from './ProcessesSectionStyles'
 
-function ProcessSection() {
+function Processdiv() {
   const dispatch = useAppDispatch()
 
   const user = useAppSelector(state => state.user)
 
+  const token = useRef(null)
+
   // Effects
   useEffect(() => {
-    (async () => {
-      const userTeams = await (
-        await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/teams/user/${user.id}`)
-      ).json()
+    if (!user?.teams) {
+      (async () => {
+        token.current = localStorage?.getItem('m-token') || ''
 
-      dispatch(setUser({
-        ...user,
-        teams: userTeams,
-      }))
-    })()
-  }, [])
+        const userTeams = await (
+          await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/teams`, {
+            headers: {
+              Authorization: `Bearer ${token.current}`,
+            },
+          })
+        ).json()
+
+        dispatch(
+          setUser({
+            ...user,
+            teams: userTeams,
+          }),
+        )
+      })()
+    }
+  }, [user, dispatch])
 
   return (
     <ProcessSectionContainer>
-      {(user.teams?.length > 0) ? user.teams.map(team => (
-        <Link
-          key={team.id}
-          href={`/dashboard/team/${team.id}`}
-        >
-          <TeamHeader
-            key={team.id}
-            name={team.name}
-            members={team.users}
-          />
+      {user.teams?.length > 0 && (
+        user.teams.map(team => (
+          <div key={team.id}>
+            <TeamHeader
+              name={team.name}
+              teamId={team.id}
+              members={team.users}
+            />
 
-          <ProcessesList>
-            {team.processes.length > 0 ? (team.processes.map(
-              ({ id, name, stage }) => (
-                <ProcessCard
-                  key={id}
-                  name={name}
-                  stage={stage}
-                />
-              ),
-            )) : (
-              <p>
-                Nenhum processo encontrado
-              </p>
-            )}
-          </ProcessesList>
-          <hr />
-        </Link>
-      )) : (
-        <div>Criar Time</div>
+            <ProcessesList>
+              {team.processes.length > 0 ? (
+                team.processes.map(({
+                  id, name, stage, subProcesses,
+                }) => (
+                  <ProcessCard
+                    key={id}
+                    id={id}
+                    name={name}
+                    stage={stage}
+                    teamId={team.id}
+                    subProcesses={subProcesses}
+                  />
+                ))
+              ) : (
+                <p>Nenhum processo criado</p>
+              )}
+            </ProcessesList>
+            <hr />
+          </div>
+        ))
       )}
-
     </ProcessSectionContainer>
   )
 }
 
-export default ProcessSection
+export default Processdiv
